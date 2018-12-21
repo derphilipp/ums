@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-
 function repair_pip_rights {
     if [[ "$OSTYPE" == "darwin"* ]]; then
         echo "Shall I set user rights to current user to /usr/local ?"
@@ -14,37 +13,43 @@ function repair_pip_rights {
     fi
 }
 
-function list_outdated {
-    pip2 list --outdated --format=freeze --local | grep -v '^\-e'
-}
-
-function pip_update {
-    if [[ $(list_outdated | grep -v "pep517") ]]; then
-        list_outdated | grep -v "pep517" | cut -d = -f 1  | xargs -n1 pip2 -q install -U
+function install_pip_review {
+    if python2 -m pip_review --version >/dev/null 2>/dev/null; then
+        echo ""
+    else
+        python2 -m pip install pip-review
     fi
 }
 
-function pip_update_osx {
-    if [[ $(list_outdated | grep -v "pygobject") ]]; then
-        list_outdated| grep -v "pygobject" | cut -d = -f 1  | xargs -n1 pip2 -q install -U
+function install_pip_review_sudo {
+    if python2 -m pip_review --version >/dev/null 2>/dev/null; then
+        echo ""
+    else
+        sudo -H python2 -m pip install pip-review
     fi
 }
 
-function pip_update_sudo {
-    sudo -H pip2 install -U $(sudo -H pip2 freeze | grep -v pep517 | cut -d '=' -f 1) | grep -v "Requirement already up-to-date"
+function update {
+    python2 -m pip_review --interactive
+}
+
+function update_sudo {
+    sudo -H python2 -m pip_review --interactive
 }
 
 
-if which pip2 >/dev/null 2>/dev/null; then
-    echo "🐍 Update pip2"
+if which python2 >/dev/null 2>/dev/null; then
+    echo "🐍 Update python2 packages"
     if [[ "$OSTYPE" == "darwin"* ]]; then
-        if pip_update_osx; then
-            echo ""
+        install_pip_review
+        if update; then
+             echo ""
         else
             repair_pip_rights
-            pip_update_osx
+            update
         fi
     else
-        pip_update_sudo
+        install_pip_review_sudo
+        update_sudo
     fi
 fi
