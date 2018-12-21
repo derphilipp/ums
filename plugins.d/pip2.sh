@@ -31,7 +31,7 @@ function pip_update_osx {
 }
 
 function pip_update_sudo {
-    sudo -H pip2 install -U $(pip2 -H freeze | grep -v pep517 | cut -d '=' -f 1)
+    sudo -H pip2 install -U $(sudo -H pip2 freeze | grep -v pep517 | cut -d '=' -f 1) | grep -v "Requirement already up-to-date"
 }
 
 
