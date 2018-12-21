@@ -36,7 +36,7 @@ function pip_update_sudo {
 
 
 if which pip3 >/dev/null 2>/dev/null; then
-    echo "Update pip3"
+    echo "🐍 Update pip3"
     if [[ "$OSTYPE" == "darwin"* ]]; then
         if pip_update_osx; then
             echo ""
