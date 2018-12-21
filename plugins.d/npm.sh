@@ -5,19 +5,27 @@ if which npm 2>/dev/null; then
         npm install npm@latest -g
         echo ""
 
-        echo "🔊  npm list global outdated"
-        npm outdated -g --depth=0
-        echo ""
+        echo "💊  Check for npm-check"
+        if ! type npm-check 2>/dev/null; then
+            npm -g install npm-check@latest -g
+        fi
 
-        echo "📦  npm upgrade installation ..."
-        for package in $(sudo npm -g outdated --parseable --depth=0 | cut -d: -f4)
-        do
-            sudo npm -g install "$package"
-        done
+        echo "💊  Run npm-check"
+        npm-check -u -g
 
-        echo "📦  npm upgrade running ..."
-        npm update -g
-        echo ""
+        # echo "🔊  npm list global outdated"
+        # npm outdated -g --depth=0
+        # echo ""
+        #
+        # echo "📦  npm upgrade installation ..."
+        # for package in $(sudo npm -g outdated --parseable --depth=0 | cut -d: -f4)
+        # do
+        #     sudo npm -g install "$package"
+        # done
+        #
+        # echo "📦  npm upgrade running ..."
+        # npm update -g
+        # echo ""
 
         if [[ $1 == "cleanup" ]]; then
             if printf '%s\n%s\n' "$(npm --version)" 5.0.0 | sort --version-sort --check=silent; then
@@ -36,19 +44,28 @@ if which npm 2>/dev/null; then
         sudo npm install npm@latest -g
         echo ""
 
-        echo "🔊  npm list global outdated"
-        sudo npm outdated -g --depth=0
-        echo ""
+        echo "💊  Check for npm-check"
+        if ! type npm-check 2>/dev/null; then
+            sudo npm -g install npm-check@latest -g
+        fi
 
-        echo "📦  npm upgrade installation ..."
-        for package in $(sudo npm -g outdated --parseable --depth=0 | cut -d: -f4)
-        do
-            sudo npm -g install "$package"
-        done
+        echo "💊  Run npm-check"
+        sudo npm-check -u -g
 
-        echo "📦  npm upgrade running ..."
-        sudo npm update -g
-        echo ""
+
+        # echo "🔊  npm list global outdated"
+        # sudo npm outdated -g --depth=0
+        # echo ""
+        #
+        # echo "📦  npm upgrade installation ..."
+        # for package in $(sudo npm -g outdated --parseable --depth=0 | cut -d: -f4)
+        # do
+        #     sudo npm -g install "$package"
+        # done
+        #
+        # echo "📦  npm upgrade running ..."
+        # sudo npm update -g
+        # echo ""
 
         if [[ $1 == "cleanup" ]]; then
             if printf '%s\n%s\n' "$(sudo npm --version)" 5.0.0 | sort --version-sort --check=silent; then
