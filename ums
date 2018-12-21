@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -Eeuo pipefail
 
 SCRIPTS_DIR=$HOME/.ums/plugins.d
 for script in $(ls $SCRIPTS_DIR); do
