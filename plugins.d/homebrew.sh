@@ -3,10 +3,9 @@ if which brew 2>/dev/null; then
   echo "🍺  Homebrew"
   brew update
   brew upgrade
-  echo ""
-
-  echo "👨‍⚕  ️The Doc is checking that everything is ok."
-  brew doctor
+  # echo ""
+  # echo "👨‍⚕  ️The Doc is checking that everything is ok."
+  # brew doctor
   brew missing
   echo ""
 
