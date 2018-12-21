@@ -10,17 +10,41 @@ function repair_pip_rights {
             sudo chown -R $USER /usr/local
         fi
     else
-        echo "Please fix rights of pip files"
+        echo "Fix your access rights please"
     fi
+}
+
+function list_outdated {
+    pip2 list --outdated --format=freeze --local | grep -v '^\-e'
+}
+
+function pip_update {
+    if [[ $(list_outdated | grep -v "pep517") ]]; then
+        list_outdated | grep -v "pep517" | cut -d = -f 1  | xargs -n1 pip2 -q install -U
+    fi
+}
+
+function pip_update_osx {
+    if [[ $(list_outdated | grep -v "pygobject") ]]; then
+        list_outdated| grep -v "pygobject" | cut -d = -f 1  | xargs -n1 pip2 -q install -U
+    fi
+}
+
+function pip_update_sudo {
+    sudo pip2 install -U $(pip2 freeze | grep -v pep517 | cut -d '=' -f 1)
 }
 
 
 if which pip2 >/dev/null 2>/dev/null; then
     echo "Update pip2"
-    if pip2 list --outdated --format=freeze --local --no-cache-dir | grep -v '^\-e' | grep -v "pygobject" | cut -d = -f 1  | xargs -n1 pip2 -q install -U --no-cache-dir; then
-        echo ""
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        if pip_update_osx; then
+            echo ""
+        else
+            repair_pip_rights
+            pip_update_osx
+        fi
     else
-        repair_pip_rights
-        pip2 list --outdated --format=freeze --local --no-cache-dir | grep -v '^\-e' | grep -v "pygobject" |cut -d = -f 1  | xargs -n1 pip2 -q install -U --no-cache-dir
+        pip_update || pip_update_sudo_osx_osx
     fi
 fi
