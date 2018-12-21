@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+SCRIPTS_DIR=$HOME/.ums/plugins.d
+for script in $(ls $SCRIPTS_DIR); do
+  if [ -x "$SCRIPTS_DIR/$script" ]; then
+    $SCRIPTS_DIR/$script $@
+  fi
+done
+
+echo "✅ Updates complete successfully"
