@@ -5,8 +5,8 @@ if which npm 2>/dev/null; then
         npm install npm@latest -g
         echo ""
 
-        echo "💊  Check for npm-check"
         if ! type npm-check 2>/dev/null; then
+            echo "💊  Install npm-check"
             npm -g install npm-check@latest -g
         fi
 
@@ -44,8 +44,8 @@ if which npm 2>/dev/null; then
         sudo npm install npm@latest -g
         echo ""
 
-        echo "💊  Check for npm-check"
         if ! type npm-check 2>/dev/null; then
+            echo "💊  Install npm-check"
             sudo npm -g install npm-check@latest -g
         fi
 
