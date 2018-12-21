@@ -31,7 +31,7 @@ function pip_update_osx {
 }
 
 function pip_update_sudo {
-    sudo pip3 install -U $(pip3 freeze | grep -v pep517 | cut -d '=' -f 1)
+    sudo -H pip3 install -U $(sudo -H pip3 freeze | grep -v pep517 | cut -d '=' -f 1)
 }
 
 
@@ -45,6 +45,6 @@ if which pip3 >/dev/null 2>/dev/null; then
             pip_update_osx
         fi
     else
-        pip_update || pip_update_sudo
+        pip_update_sudo
     fi
 fi
