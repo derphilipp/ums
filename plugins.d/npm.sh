@@ -67,17 +67,18 @@ if which npm 2>/dev/null; then
         # sudo npm update -g
         # echo ""
 
-        if [[ $1 == "cleanup" ]]; then
-            if printf '%s\n%s\n' "$(sudo npm --version)" 5.0.0 | sort --version-sort --check=silent; then
-                echo "🌬   Cleaning npm cache"
-                sudo npm cache clean
+            if [[ $1 == "cleanup" ]]; then
+                if printf '%s\n%s\n' "$(sudo npm --version)" 5.0.0 | sort --version-sort --check=silent; then
+                    echo "🌬   Cleaning npm cache"
+                    sudo npm cache clean
+                fi
             fi
+
+            echo "🔍   Verifying npm cache"
+            sudo npm cache verify
+
+            echo "👨‍⚕️   Running npm health check"
+            sudo npm doctor
         fi
-
-        echo "🔍   Verifying npm cache"
-        sudo npm cache verify
-
-        echo "👨‍⚕️   Running npm health check"
-        sudo npm doctor
     fi
 fi
