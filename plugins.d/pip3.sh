@@ -45,6 +45,6 @@ if which pip3 >/dev/null 2>/dev/null; then
             pip_update_osx
         fi
     else
-        pip_update || pip_update_sudo_osx_osx
+        pip_update || pip_update_sudo
     fi
 fi
