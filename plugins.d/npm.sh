@@ -9,6 +9,12 @@ if which npm 2>/dev/null; then
         npm outdated -g --depth=0
         echo ""
 
+        echo "📦  npm upgrade installation ..."
+        for package in $(sudo npm -g outdated --parseable --depth=0 | cut -d: -f4)
+        do
+            sudo npm -g install "$package"
+        done
+
         echo "📦  npm upgrade running ..."
         npm update -g
         echo ""
@@ -33,6 +39,12 @@ if which npm 2>/dev/null; then
         echo "🔊  npm list global outdated"
         sudo npm outdated -g --depth=0
         echo ""
+
+        echo "📦  npm upgrade installation ..."
+        for package in $(sudo npm -g outdated --parseable --depth=0 | cut -d: -f4)
+        do
+            sudo npm -g install "$package"
+        done
 
         echo "📦  npm upgrade running ..."
         sudo npm update -g
