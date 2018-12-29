@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-if which brew 2>/dev/null; then
-    if which brew 2>/dev/null; then # Only osx for now
+if which brew 2>/dev/null >/dev/null; then
+    if which brew 2>/dev/null >/dev/null; then # Only osx for now
         echo "🍺  Homebrew"
         brew update
         brew upgrade
