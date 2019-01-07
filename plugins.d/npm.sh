@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+set -Eeuo pipefail
+
 if which npm 2>/dev/null; then
     if [[ "$OSTYPE" == "darwin"* ]]; then
         echo "💊  Upgrade npm itself"

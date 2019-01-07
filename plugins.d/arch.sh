@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -Eeuo pipefail
 if which yaourt >/dev/null 2>/dev/null; then
     echo "🐧 update yaourt"
     yaourt -Syu --devel --aur --noconfirm

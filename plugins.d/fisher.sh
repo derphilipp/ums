@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -Eeuo pipefail
 
 if which fish >/dev/null 2>/dev/null; then
     if fish -c "type -q fisher" ; then
