@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -Eeuo pipefail
 echo "⚛️   update atom"
 if which apm-beta 2>/dev/null; then
     apm-beta upgrade -c false

@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -Eeuo pipefail
 
 if which cargo >/dev/null 2>/dev/null; then
     if which cargo-install-update >/dev/null 2>/dev/null; then

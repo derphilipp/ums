@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -Eeuo pipefail
 
 function repair_pip_rights {
     if [[ "$OSTYPE" == "darwin"* ]]; then

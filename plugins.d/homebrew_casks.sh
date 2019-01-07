@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+set -Eeuo pipefail
+
 if [[ "$OSTYPE" == "darwin"* ]]; then
     if which brew 2>/dev/null >/dev/null; then
         echo "🍺  Homebrew casks"

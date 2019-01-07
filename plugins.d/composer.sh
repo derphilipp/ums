@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+set -Eeuo pipefail
+
 if which composer 2>/dev/null; then
   echo "🎼  Composer"
   composer global update
