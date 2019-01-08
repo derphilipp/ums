@@ -12,7 +12,7 @@ if which brew 2>/dev/null >/dev/null; then
         brew missing
         echo ""
 
-        if [[ $1 == "cleanup" ]]; then
+        if [[ ${1-default} == "cleanup" ]]; then
             echo "🌬   Cleaning brewery"
             brew cleanup -s
         fi
