@@ -31,11 +31,11 @@ function install_pip_review_sudo {
 }
 
 function update {
-    python3 -m pip_review --interactive
+    python3 -m pip_review --auto
 }
 
 function update_sudo {
-    sudo -H python3 -m pip_review --interactive
+    sudo -H python3 -m pip_review --auto
 }
 
 
