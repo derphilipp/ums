@@ -7,7 +7,7 @@ function repair_pip_rights {
         read -p "Are you sure? " -n 1 -r
         echo
         if [[ $REPLY =~ ^[Yy]$ ]]; then
-            sudo chown -R $USER /usr/local
+            sudo chown -R "$USER" /usr/local
         fi
     else
         echo "Fix your access rights please"
@@ -31,15 +31,15 @@ function install_pip_review_sudo {
 }
 
 function update {
-    python2 -m pip_review --interactive
+    python2 -m pip_review --auto
 }
 
 function update_sudo {
-    sudo -H python2 -m pip_review --interactive
+    sudo -H python2 -m pip_review --auto
 }
 
 
-if which python2 >/dev/null 2>/dev/null; then
+if command -v python2 >/dev/null 2>/dev/null; then
     echo "🐍 Update python2 packages"
     if [[ "$OSTYPE" == "darwin"* ]]; then
         install_pip_review

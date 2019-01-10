@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
-if which yarn 2>/dev/null; then
+if command -v yarn 2>/dev/null; then
   echo "📦  Yet another Yarn upgrade running ..."
   yarn global upgrade -s
   echo ""

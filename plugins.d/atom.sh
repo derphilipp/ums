@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
-echo "⚛️   update atom"
-if which apm-beta 2>/dev/null; then
+
+if command -v apm-beta 2>/dev/null; then
+    echo "⚛️   update atom"
     apm-beta upgrade -c false
 fi
-if which apm 2>/dev/null; then
+
+if command -v apm 2>/dev/null; then
+    echo "⚛️   upgrade atom"
     apm upgrade -c false
 fi
-echo ""
