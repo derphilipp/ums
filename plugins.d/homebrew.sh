@@ -6,15 +6,11 @@ if command -v brew 2>/dev/null >/dev/null; then
         echo "🍺  Homebrew"
         brew update
         brew upgrade
+        brew cleanup
         # echo ""
         # echo "👨‍⚕  ️The Doc is checking that everything is ok."
         # brew doctor
         brew missing
         echo ""
-
-        if [[ ${1-default} == "cleanup" ]]; then
-            echo "🌬   Cleaning brewery"
-            brew cleanup -s
-        fi
     fi
 fi
