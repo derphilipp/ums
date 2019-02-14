@@ -50,7 +50,7 @@ if command -v python2 >/dev/null 2>/dev/null; then
             update
         fi
     else
-        install_pip_review_sudo
-        update_sudo
+        # install_pip_review_sudo
+        # update_sudo
     fi
 fi
