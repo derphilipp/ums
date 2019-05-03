@@ -15,11 +15,11 @@ if command -v npm 2>/dev/null; then
         echo "💊  Run npm-check"
         npm-check -u -g
     else
-        if command -v raspi-config 2>/dev/null; then
-            npm=/usr/bin/npm
-        else
+        # if command -v raspi-config 2>/dev/null; then
+        #     npm=/usr/bin/npm
+        # else
             npm="$(which npm)"
-        fi
+        # fi
 
         echo "💊  Upgrade npm itself ($npm)"
         sudo -H "$npm" install npm@latest -g
